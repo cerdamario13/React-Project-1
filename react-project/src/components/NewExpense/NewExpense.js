@@ -28,7 +28,8 @@ const NewExpense = (props) => {
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-
+    
+    //for more info, see video 57 on udemy course
     props.onSaveExpenseData(expenseData); //send data to app.js from form
     //Return the input to blank state
     setEnteredTitle("");

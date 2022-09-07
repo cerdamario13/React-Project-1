@@ -1,4 +1,4 @@
-import React, { useSate } from "react";
+import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
@@ -26,7 +26,7 @@ const INITIAL_EXPENSES = [
 
 function App() {
   
-  const [expenses, setExpenses] = useSate(INITIAL_EXPENSES);
+  const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
   
   //data from form
   const saveExpenseDataHandler = (enteredExpenseData) => {
@@ -34,24 +34,30 @@ function App() {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
+    setExpenses(prevExpenses => {
+      return [expenseData, ...prevExpenses];
+    });
+    // console.log(enteredExpenseData);
     console.log(expenseData);
   };
   
 
   //adding an expense
-  const addExpenseHandler = (expense) => {
-    setExpenses(prevExpenses => {
-      return [expense, ...prevExpenses]
-    });
-  };
+  // const addExpenseHandler = (expense) => {
+  //   console.log('in App.js')
+  //   console.loc(expenses)
+    // setExpenses(prevExpenses => {
+    //   return [expense, ...prevExpenses]
+    // });
+  //};
 
   return (
     <div>
       <NewExpense
         onSaveExpenseData={saveExpenseDataHandler}
-        onAddExpense={addExpenseHandler}
+        // onAddExpense={addExpenseHandler}
       ></NewExpense>
-      <Expenses data={INITIAL_EXPENSES} />
+      <Expenses data={expenses} />
     </div>
   );
 }
