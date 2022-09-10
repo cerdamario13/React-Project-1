@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import CollapseCard from "./components/NewExpense/CollapseCard";
 
 const INITIAL_EXPENSES = [
   {
@@ -41,6 +42,11 @@ function App() {
     console.log(expenseData);
   };
   
+  //expand to allow user to enter a new expense
+  const addNewExpense = (expandCard) => {
+    console.log(expandCard);
+  };
+  
 
   //adding an expense
   // const addExpenseHandler = (expense) => {
@@ -57,6 +63,7 @@ function App() {
         onSaveExpenseData={saveExpenseDataHandler}
         // onAddExpense={addExpenseHandler}
       ></NewExpense>
+      <CollapseCard onAddNewExpense={addNewExpense}></CollapseCard>
       <Expenses data={expenses} />
     </div>
   );
