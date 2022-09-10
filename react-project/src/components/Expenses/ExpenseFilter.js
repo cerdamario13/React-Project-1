@@ -16,6 +16,7 @@ const ExpensesFilter = (props) => {
     //if logged here using event.target.value the value will log
     // what we need is to forward the value to Expenses.js file
     props.onChangeFilter(event.target.value);
+    //console.log(event.target.value)
   };
 
   return (

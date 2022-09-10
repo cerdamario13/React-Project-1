@@ -16,8 +16,17 @@ function Expenses(props) {
   const filterChangeHandler = (selectedYear) => {
     setFilteredDate(selectedYear);
     //console.log(selectedYear);
+    //console.log('from expenses');
+    //List filter based on year selection
   };
-
+  
+  //const [filterList, setFilterList] = useState("2020");
+  let filterList = [];
+  //console.log(props.data.map(date => date.date.getFullYear()));
+  filterList = props.data.filter(date => date.date.getFullYear() == filteredDate);
+  //console.log(filterList);
+  
+  
   return (
     <div>
       <Card className="expenses">
@@ -26,8 +35,9 @@ function Expenses(props) {
           onChangeFilter={filterChangeHandler}
         ></ExpensesFilter>
 
-        {props.data.map((expense) => (
+        {filterList.map((expense) => (
           <ExpenseItem
+            key={expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
