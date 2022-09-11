@@ -46,6 +46,10 @@ function App() {
   const addNewExpense = (expandCard) => {
     console.log(expandCard);
   };
+
+  const CancelNewExpense = (cancelExpense) => {
+    console.log(cancelExpense);
+  }
   
 
   //adding an expense
@@ -62,6 +66,7 @@ function App() {
       <NewExpense
         onSaveExpenseData={saveExpenseDataHandler}
         // onAddExpense={addExpenseHandler}
+        onCancelNewExpense={CancelNewExpense}
       ></NewExpense>
       <CollapseCard onAddNewExpense={addNewExpense}></CollapseCard>
       <Expenses data={expenses} />
