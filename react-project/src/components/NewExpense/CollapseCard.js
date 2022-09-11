@@ -10,7 +10,7 @@ const CollapseCard = (props) => {
 
     return (
         <div className="new-expense">
-            <button onClick={addNewExpense}> Add New Expense</button>
+            <button onClick={addNewExpense}> Add New Expense!</button>
         </div>
     );
 };
