@@ -26,49 +26,57 @@ const INITIAL_EXPENSES = [
 ];
 
 function App() {
-  
+
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
-  
+  const [isEditing, setIsEditing] = useState(false);
+
   //data from form
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
+
+    //Closing the form after submition
+    setIsEditing(false);
+
     setExpenses(prevExpenses => {
       return [expenseData, ...prevExpenses];
     });
+
     // console.log(enteredExpenseData);
     console.log(expenseData);
+
   };
-  
+
   //expand to allow user to enter a new expense
   const addNewExpense = (expandCard) => {
-    console.log(expandCard);
+    setIsEditing(true);
   };
 
   const CancelNewExpense = (cancelExpense) => {
-    console.log(cancelExpense);
+    // console.log(`From Outside ${cancelExpense}`);
+    setIsEditing(false);
   }
-  
+
 
   //adding an expense
   // const addExpenseHandler = (expense) => {
   //   console.log('in App.js')
   //   console.loc(expenses)
-    // setExpenses(prevExpenses => {
-    //   return [expense, ...prevExpenses]
-    // });
+  // setExpenses(prevExpenses => {
+  //   return [expense, ...prevExpenses]
+  // });
   //};
 
   return (
     <div>
-      <NewExpense
+      {isEditing && <NewExpense
         onSaveExpenseData={saveExpenseDataHandler}
         // onAddExpense={addExpenseHandler}
         onCancelNewExpense={CancelNewExpense}
-      ></NewExpense>
-      <CollapseCard onAddNewExpense={addNewExpense}></CollapseCard>
+      ></NewExpense>}
+      {!isEditing && <CollapseCard onAddNewExpense={addNewExpense}></CollapseCard>}
       <Expenses data={expenses} />
     </div>
   );
