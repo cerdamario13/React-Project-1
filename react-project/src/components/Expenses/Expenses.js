@@ -3,6 +3,7 @@ import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpenseFilter";
+import ExpensesChart from "../Chart/Chart";
 
 function Expenses(props) {
   //my solution
@@ -22,8 +23,9 @@ function Expenses(props) {
 
   let filterList = [];
   filterList = props.data.filter(
-    (date) => date.date.getFullYear() == filteredDate
+    (date) => date.date.getFullYear().toString() == filteredDate
   );
+  let amountValue = filterList.map(value => value.amount)
 
   return (
     <div>
@@ -32,6 +34,7 @@ function Expenses(props) {
           selected={filteredDate} // send the value
           onChangeFilter={filterChangeHandler}
         ></ExpensesFilter>
+        <ExpensesChart expenses={filterList}></ExpensesChart>
 
         {filterList.length === 0 ? (
           <p className="expenses-filter" style={{ textAlign: "center" }}>
